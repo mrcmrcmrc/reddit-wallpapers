@@ -109,7 +109,7 @@ namespace wallpapers
                     return  baseuri + subreddit + t;
                 else
                 {
-                    nextPage = "&count=" + 25 * p + "&after=" + lastID; //zamana göre sıralama yapılabilenlerde ?count yerine &count
+                    nextPage = "&count=" + 25 * p + "&after=" + lastID; //use &count instead of ?count for filter by time.
                     return baseuri + subreddit + t + nextPage;
                 }
                     
@@ -141,7 +141,7 @@ namespace wallpapers
 
             return "t3_" + (allElementsWithClassFloat[allElementsWithClassFloat.Count-1].Id.Split('_'))[2];
 
-        } // birden fazla sayfaya bakarken bir sonraki sayfaya geçebilmek için son post'un id'sine ihtiyaç var.
+        } // need lastPostID for next page
 
         private List<string> ExtractAllAHrefTags(HtmlAgilityPack.HtmlDocument htmlSnippet)
         {
@@ -175,13 +175,12 @@ namespace wallpapers
                     if (!(links[i].Contains(".jpg") || links[i].Contains(".png")))
                         links[i] = convertURL(links[i]);
                     l.Add(links[i]);
-                    //Console.WriteLine(links[i]);
-                    i++;               //i++'lar 2 defa eklemesin diye.
+                    i++;               
                 }
 
             }
             return l;
-        }//bütün hreflerin içinden imgur linklerini almak için. eski yöntem
+        }//old
 
         private string convertURL(string s)
         {
@@ -190,7 +189,7 @@ namespace wallpapers
                 st[2] = x;
 
             return s = "https://i.imgur.com/" + st[2] + ".jpg";
-        }//imgur imageleri için.eski yöntem.
+        }//old
 
         private List<string> getImageLinks(HtmlAgilityPack.HtmlDocument htmldoc)
         {
@@ -213,7 +212,7 @@ namespace wallpapers
             }
 
             return links;
-        } // yeni yöntem. data-url attribute'nden image linklerini al
+        } // 
 
         private string convertURLreddit(string s) 
         {
