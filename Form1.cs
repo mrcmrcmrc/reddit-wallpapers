@@ -222,8 +222,7 @@ namespace wallpapers
             foreach (string i in str)
                 n += i;
             return temp[0] + "?" + n;
-        } // reddituploads.com'a yüklenen imageleri almak için.
-
+        } // reddituploads.com
         private void createUI()
         {
 
